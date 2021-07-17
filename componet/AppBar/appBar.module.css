@@ -1,0 +1,25 @@
+.container{
+    margin-top: 10px;
+  }
+  
+  .textf {
+    margin-right: 35px !important;
+    margin-left: 16px !important;
+    font-size: 20px !important;
+    font-family: auto;
+    margin-top: 3px !important;
+  }
+  .textcontainer{
+    text-align:right;
+    margin-top:6px !important;
+  }
+  .text {
+    font-size:18px;
+    margin-right:25px;
+    font-family:sans-serif;
+    margin-top:10px !important;
+  }
+  
+  .textfiled{
+    margin-bottom: 10px !important;
+  }

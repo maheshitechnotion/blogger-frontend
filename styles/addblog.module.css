@@ -1,0 +1,100 @@
+/* ============================addblog=========================================== */
+.topcontainer{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.cancelBtn{
+    text-transform: capitalize !important;
+    font-weight: bold !important;
+    color: #5664d2 !important;
+    border-color: #a2a7d8 !important;
+}
+.cancelBtn:hover{
+    border-color: #5664d2 !important;
+}
+.publishBtn{
+    margin-left:13px !important; 
+    text-transform:capitalize !important;
+    font-weight:bold !important;
+}
+
+.maincontainer{
+    margin-top: 15px !important; 
+    /* display: flex !important; */
+}
+.leftcontainer{
+    border:1px solid grey;
+    border-radius: 20px;
+}
+  
+.titleFiled{
+    display: flex !important;
+    /* width: 693px; */
+}
+.description{
+    margin-top: 20px !important;
+}
+.lableText{
+    color: grey;
+    font-size: 20px;
+    margin-top: 17px !important;
+}
+.coverfield{
+    display: flex !important;
+    margin-top: 15px !important;
+}
+.writingContainer{
+    border:1px solid grey;
+    border-radius: 10px;
+}
+.write{
+    height: auto;
+    display: flex;
+    margin-left: 10px !important;
+    border-bottom: none !important;
+}
+.leftSecondContainer{
+    border:1px solid grey;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+  
+.metaText{
+    color: black;
+    font-size: 20px;
+    margin-top: 17px !important;
+    font-weight: bold !important;
+}
+.seotitle{
+    display: flex !important;
+    /* width: 693px; */
+    margin-top: 15px !important;
+}
+.rightcontainer{
+    border:1px solid grey;
+    border-radius: 20px;
+}
+.normal{
+    margin: 10px !important;
+    font-size: 15px  !important;
+    cursor: pointer;
+}
+.normal:hover{
+    color: #5664d2;
+}
+.iconbtn{
+    color: black !important;
+}
+.iconbtn:hover{
+    color: #5664d2 !important;
+
+}
+.Filed{
+    display: flex !important;
+    /* width: 693px; */
+}
+.Filed1{
+    display: flex !important;
+    margin-top: 10px !important;
+    /* width: 693px; */
+}

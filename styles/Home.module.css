@@ -1,0 +1,26 @@
+.lableText{
+  margin-top:10px !important;
+  font-size:98px !important;
+  text-align:center;
+}
+.card{
+  cursor: pointer;
+}
+/* .card:hover{
+  box-shadow: #484848;
+} */
+.title{
+  color: #03a87c;
+  font-size: 32px;
+  font-weight: bold !important;
+}
+
+.text{
+  color: #484848;
+  font-size: 24px;
+}
+
+
+
+
+
