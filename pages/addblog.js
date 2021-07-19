@@ -26,33 +26,37 @@ import FormData from 'form-data'
 
 const AddBlog = () => {
     const [title, settitle] = useState('')
-    const [body, setBody] = useState('')
+    const [description, setdescription] = useState('')
+    const [file,setFile] = useState('')
+    const [content,setContent] = useState('')
+    const [title,setSEO]
 
-    let data = new FormData();
-    data.append('title', 'blog3');
-    data.append('body', 'awrfewegv');
-    data.append('categories', '5e84812fe77f162234746cd0');
-    data.append('tags', '5ead5f603a09e02a2096ea64');
-    data.append('postedBy','60f17d1982957f7a8d4ae6d4')
+    // let data = new FormData();
+    // data.append('title', 'blog3');
+    // data.append('body', 'awrfewegv');
+    // data.append('categories', '5e84812fe77f162234746cd0');
+    // data.append('tags', '5ead5f603a09e02a2096ea64');
+    // data.append('postedBy','60f17d1982957f7a8d4ae6d4')
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxN2QxOTgyOTU3ZjdhOGQ0YWU2ZDQiLCJpYXQiOjE2MjY0Mzg5NjYsImV4cCI6MTYyNjUyNTM2Nn0.JC0hRvQFi3-5Fj-7_eCZi2I6Q5evs0pduSXK8iyoGvc"
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxN2QxOTgyOTU3ZjdhOGQ0YWU2ZDQiLCJpYXQiOjE2MjY0Mzg5NjYsImV4cCI6MTYyNjUyNTM2Nn0.JC0hRvQFi3-5Fj-7_eCZi2I6Q5evs0pduSXK8iyoGvc"
 
     const publish = () => {
-        axios.post('http://localhost:8000/api/blog',
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            },
-            { data: data }
-        )
-            .then(res => {
-                console.log("---response---: ", res);
-                alert("publish blog successfully!!!")
-            })
-            .catch(err => {
-                console.log("---Error---: ", err);
-            })
+        alert(`blog title : ${title} description:  ${description} file: ${file}`)
+        // axios.post('http://localhost:8000/api/blog',
+        //     {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`
+        //         }
+        //     },
+        //     { data: data }
+        // )
+        //     .then(res => {
+        //         console.log("---response---: ", res);
+        //         alert("publish blog successfully!!!")
+        //     })
+        //     .catch(err => {
+        //         console.log("---Error---: ", err);
+        //     })
     }
     return (
         <>
@@ -85,19 +89,21 @@ const AddBlog = () => {
                                 <TextField
                                     fullWidth
                                     multiline
-                                    value={body}
+                                    value={description}
                                     label="Short description"
                                     rows={6}
                                     variant="outlined"
                                     className={styles.description}
-                                    onChange={(e) => (setBody(e.target.value))}
+                                    onChange={(e) => (setdescription(e.target.value))}
                                 />
                                 <Typography className={styles.lableText}>cover</Typography>
                                 <TextField
                                     // label="Short description"
+                                    value={file}
                                     type="file"
                                     variant="outlined"
                                     className={styles.coverfield}
+                                    onChange={(e)=>(setFile(e.target.value))}
                                 />
                                 <Typography className={styles.lableText}>content</Typography>
                                 <Grid className={styles.writingContainer}>
@@ -133,9 +139,11 @@ const AddBlog = () => {
                                     <InputBase
                                         fullWidth
                                         multiline
+                                        value={content}
                                         rows={10}
                                         placeholder="Write Something"
                                         className={styles.write}
+                                        onChange= {(e)=>setContent(e.target.value)}
                                     />
 
                                 </Grid>
