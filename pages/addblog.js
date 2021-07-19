@@ -9,27 +9,29 @@ import {
     Divider,
     Button,
     NativeSelect,
-    IconButton,
     FormControlLabel,
     Switch,
-    InputBase,
     Checkbox
 } from '@material-ui/core'
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import FormatClearIcon from '@material-ui/icons/FormatClear';
 import styles from '../styles/addblog.module.css'
-import FormData from 'form-data'
+import FormData from 'form-data';
+// import ReactQuill from 'react-quill'
+import dynamic from 'next/dynamic'
+import 'react-quill/dist/quill.snow.css';
 
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const AddBlog = () => {
     const [title, settitle] = useState('')
     const [description, setdescription] = useState('')
-    const [file,setFile] = useState('')
-    const [content,setContent] = useState('')
-    const [title,setSEO]
+    const [file, setFile] = useState('')
+    const [content, setContent] = useState('')
+    const [SEOtitle, setSEOtitle] = useState('')
+    const [SEOdesc, setSEOdesc] = useState('')
+    const [publishDate, setPublishDate] = useState('')
+    const [Published, setPublished] = useState(false)
+    const [category, setcategory] = useState('')
+    const [publishGlobal, setPublishGlobal] = useState(false)
+    const [comment, setComment] = useState(false)
 
     // let data = new FormData();
     // data.append('title', 'blog3');
@@ -41,7 +43,18 @@ const AddBlog = () => {
     // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxN2QxOTgyOTU3ZjdhOGQ0YWU2ZDQiLCJpYXQiOjE2MjY0Mzg5NjYsImV4cCI6MTYyNjUyNTM2Nn0.JC0hRvQFi3-5Fj-7_eCZi2I6Q5evs0pduSXK8iyoGvc"
 
     const publish = () => {
-        alert(`blog title : ${title} description:  ${description} file: ${file}`)
+        alert(`blog title :=  ${title} 
+        description :=  ${description} 
+        file := ${file}
+        content := ${content}
+        SEOtitle := ${SEOtitle}
+        SEOdescription := ${SEOdesc}
+        publish Date := ${publishDate}
+        Schedule Publish := ${Published}
+        category := ${category}
+        publish globaly or not := ${publishGlobal}
+        comment enable or not := ${comment}`
+        )
         // axios.post('http://localhost:8000/api/blog',
         //     {
         //         headers: {
@@ -74,7 +87,7 @@ const AddBlog = () => {
             </Container>
             <Divider />
             <Container>
-                <Grid container className={styles.maincontainer} spacing={8}>
+                <Grid container className={styles.maincontainer} spacing={4}>
                     <Grid item lg={8} md={12} sm={12} xs={12} >
                         <Grid className={styles.leftcontainer}>
                             <Grid style={{ margin: 20 }}>
@@ -98,55 +111,22 @@ const AddBlog = () => {
                                 />
                                 <Typography className={styles.lableText}>cover</Typography>
                                 <TextField
-                                    // label="Short description"
                                     value={file}
                                     type="file"
                                     variant="outlined"
                                     className={styles.coverfield}
-                                    onChange={(e)=>(setFile(e.target.value))}
+                                    onChange={(e) => (setFile(e.target.value))}
                                 />
                                 <Typography className={styles.lableText}>content</Typography>
-                                <Grid className={styles.writingContainer}>
-                                    <NativeSelect
-                                        defaultValue="h4"
-                                        className={styles.normal}
-                                        variant="standard"
-                                    >
-                                        <option value="h1">heading 1</option>
-                                        <option value="h2">heading 2</option>
-                                        <option value="h3">heading 3</option>
-                                        <option value="h4">Normal</option>
-                                    </NativeSelect>
-                                    <IconButton size="small">
-                                        <FormatBoldIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <IconButton size="small">
-                                        <FormatItalicIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <IconButton size="small">
-                                        <FormatUnderlinedIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <IconButton size="small">
-                                        <FormatListNumberedIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <IconButton size="small">
-                                        <FormatListBulletedIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <IconButton size="small">
-                                        <FormatClearIcon className={styles.iconbtn} />
-                                    </IconButton>
-                                    <Divider />
-                                    <InputBase
-                                        fullWidth
-                                        multiline
-                                        value={content}
-                                        rows={10}
-                                        placeholder="Write Something"
-                                        className={styles.write}
-                                        onChange= {(e)=>setContent(e.target.value)}
-                                    />
-
-                                </Grid>
+                                <ReactQuill
+                                    value={content}
+                                    placeholder="write something"
+                                    // style={{height:"200px"}}
+                                    onChange={setContent}
+                                    // className={styles.quill}
+                                />
+                                    {/* <Grid className={styles.quilcontainer}/> */}
+                                {/* </ReactQuill> */}
                             </Grid>
                         </Grid>
                         <Grid className={styles.leftSecondContainer}>
@@ -154,16 +134,20 @@ const AddBlog = () => {
                                 <Typography className={styles.metaText}>Meta</Typography>
                                 <TextField
                                     label="SEO Title"
+                                    value={SEOtitle}
                                     variant="outlined"
                                     className={styles.seotitle}
+                                    onChange={(e) => setSEOtitle(e.target.value)}
                                 />
                                 <TextField
                                     fullWidth
                                     multiline
+                                    value={SEOdesc}
                                     rows={4}
                                     label="SEO description"
                                     variant="outlined"
                                     className={styles.description}
+                                    onChange={(e) => setSEOdesc(e.target.value)}
                                 />
                             </Grid>
                         </Grid>
@@ -171,25 +155,55 @@ const AddBlog = () => {
                     <Grid item lg={4} md={12} sm={12} xs={12}>
                         <Grid className={styles.rightcontainer}>
                             <Grid style={{ margin: 20 }}>
-                                <FormControlLabel control={<Switch color="primary" />} label="Schedule Publish" />
-                                {/* <Divider textAlign="left" lableText="left"/> */}
-                                {/* <Divider>Or</Divider> */}
-                                <TextField
-                                    label="date"
-                                    variant="outlined"
-                                    className={styles.Filed}
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            color="primary"
+                                            value={Published}
+                                            onChange={() => setPublished(!Published)}
+                                        />
+                                    }
+                                    label="Schedule Publish"
                                 />
+                                <TextField
+                                    type="date"
+                                    variant="outlined"
+                                    value={publishDate}
+                                    className={styles.Filed}
+                                    onChange={(e) => (setPublishDate(e.target.value))}
+                                />
+                                <Typography className={styles.categoryText}>Categories</Typography>
                                 <NativeSelect
                                     defaultValue="Programming"
-                                    className={styles.normal}
+                                    className={styles.category}
+                                    value={category}
+                                    onChange={(e) => (setcategory(e.target.value))}
                                 >
                                     <option value="Programming">Programming</option>
                                     <option value="Health">Health</option>
                                     <option value="Innovation">Innovation</option>
                                 </NativeSelect>
                                 <Typography>
-                                    <FormControlLabel control={<Checkbox color="primary" />} label="Published Globally" />
-                                    <FormControlLabel control={<Checkbox color="primary" />} label="Enable Comments" />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                value={publishGlobal}
+                                                onChange={() => (setPublishGlobal(!publishGlobal))}
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Published Globally"
+                                    />
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                color="primary"
+                                                value={comment}
+                                                onChange={() => (setComment(!comment))}
+                                            />
+                                        }
+                                        label="Enable Comments"
+                                    />
                                 </Typography>
                             </Grid>
                         </Grid>

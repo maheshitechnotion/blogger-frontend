@@ -43,20 +43,26 @@
     display: flex !important;
     margin-top: 15px !important;
 }
-.writingContainer{
-    border:1px solid grey;
-    border-radius: 10px;
-}
 .write{
     height: auto;
     display: flex;
     margin-left: 10px !important;
     border-bottom: none !important;
 }
+/* .quill{
+    height: 200px;
+} */
+.quill:hover{
+    border: 0.5px solid black;
+}
+.quilcontainer{
+    height: 200px !important;
+}
 .leftSecondContainer{
     border:1px solid grey;
     border-radius: 20px;
     margin-top: 30px;
+    height: auto;
 }
   
 .metaText{
@@ -74,20 +80,16 @@
     border:1px solid grey;
     border-radius: 20px;
 }
-.normal{
+.categoryText{
+    margin-top: 10px !important;
+}
+.category{
     margin: 10px !important;
     font-size: 15px  !important;
     cursor: pointer;
 }
-.normal:hover{
+.category:hover{
     color: #5664d2;
-}
-.iconbtn{
-    color: black !important;
-}
-.iconbtn:hover{
-    color: #5664d2 !important;
-
 }
 .Filed{
     display: flex !important;
